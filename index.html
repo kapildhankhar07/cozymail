@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cozy Mail - AI Email Automation</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  color: white;
+}
+
+/* Glow */
+body::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(59,130,246,0.4), transparent);
+  top: -200px;
+  left: -200px;
+  filter: blur(120px);
+}
+
+.container {
+  text-align: center;
+  padding: 120px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  font-size: 3.5rem;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  margin-top: 15px;
+  color: #94a3b8;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.download-btn {
+  margin-top: 40px;
+  padding: 16px 45px;
+  font-size: 18px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 25px rgba(59,130,246,0.6);
+}
+
+.download-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 50px rgba(6,182,212,0.9);
+}
+
+/* Loader */
+.loader {
+  display: none;
+  margin-top: 30px;
+}
+
+.bar {
+  width: 320px;
+  height: 8px;
+  background: #1e293b;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 15px auto;
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+}
+
+/* Features */
+.features {
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 25px;
+  padding: 0 20px;
+}
+
+.card {
+  background: rgba(255,255,255,0.05);
+  padding: 25px;
+  border-radius: 18px;
+  backdrop-filter: blur(12px);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  background: rgba(255,255,255,0.08);
+}
+
+.footer {
+  margin-top: 60px;
+  color: #64748b;
+  font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Cozy Mail</h1>
+  <p class="subtitle">
+    AI-powered email automation software. Generate smart emails, automate campaigns, 
+    and boost your productivity easily.
+  </p>
+
+  <button class="download-btn" onclick="startDownload()">
+    🚀 Download Installer
+  </button>
+
+  <div class="loader" id="loader">
+    <p id="status">Preparing download...</p>
+    <div class="bar">
+      <div class="progress" id="progress"></div>
+    </div>
+  </div>
+
+  <div class="features">
+    <div class="card">⚡ AI Email Writing</div>
+    <div class="card">📬 Bulk Automation</div>
+    <div class="card">🎯 Smart Targeting</div>
+    <div class="card">🔒 Secure & Fast</div>
+  </div>
+
+  <div class="footer">
+    © 2026 Cozy Mail
+  </div>
+</div>
+
+<script>
+function startDownload() {
+  const loader = document.getElementById("loader");
+  const progress = document.getElementById("progress");
+  const status = document.getElementById("status");
+
+  loader.style.display = "block";
+  progress.style.width = "0%";
+
+  let percent = 0;
+
+  let interval = setInterval(() => {
+    percent += Math.random() * 20;
+
+    if (percent >= 100) {
+      percent = 100;
+      clearInterval(interval);
+      status.innerText = "Starting download...";
+
+      setTimeout(() => {
+        const link = document.createElement("a");
+        link.href = "cozy-mail-installer.zip"; // IMPORTANT
+        link.download = "CozyMailInstaller.zip";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        status.innerText = "Download started!";
+      }, 500);
+    }
+
+    progress.style.width = percent + "%";
+  }, 300);
+}
+</script>
+
+</body>
+</html>
